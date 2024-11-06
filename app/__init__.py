@@ -1,6 +1,9 @@
 # app/__init__.py
 from flask import Flask
+from flasgger import Swagger 
 from app.database import init_db
+
+
 from app.routes.user_routes import user_bp
 from app.routes.destination_routes import destination_bp
 from app.routes.hotel_routes import hotel_bp
@@ -20,5 +23,8 @@ def create_app():
     app.register_blueprint(hotel_bp, url_prefix='/api/hotels')
     app.register_blueprint(reservation_bp, url_prefix='/api/reservations')
     app.register_blueprint(blog_bp, url_prefix='/api/blog')
+
+    Swagger(app)
+
 
     return app
