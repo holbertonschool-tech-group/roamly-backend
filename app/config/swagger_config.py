@@ -1,12 +1,17 @@
-from flask_restx import Api
+from flasgger import Swagger
 
 def configure_swagger(app):
-
-    api = Api(
-        app,
-        version='1.0',
-        title='User Management API',
-        description='A RESTful API for managing users',
-        doc='/swagger'  # Swagger UI URL: http://127.0.0.1:5000/swagger
-    )
-    return api
+    """
+    Flasgger üçün Swagger konfiqurasiyası.
+    """
+    Swagger(app, template={
+        "swagger": "2.0",
+        "info": {
+            "title": "User Management API",
+            "description": "A RESTful API for managing users",
+            "version": "1.0.0"
+        },
+        "host": "localhost:5000",
+        "basePath": "/api/users",
+        "schemes": ["http"],
+    })
